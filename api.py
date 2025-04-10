@@ -264,8 +264,6 @@ def historical_city_info():
 #     except Exception as e:
 #         return jsonify({"results": "Could not fetch data from historical data API. Try Again!"}), 400
  
-
-app.run(debug=True)
  
                             
     
