@@ -308,4 +308,3 @@ def historical_cities_data():
             print(e)
 
 
-app.run(debug=True)
