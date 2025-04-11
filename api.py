@@ -16,15 +16,15 @@ def historical_cities_data():
     city_list = []
 
     if request.args.get('city'):
-        city = request.args.get('city').strip().replace('"', '').lower()
+        city = request.args.get('city').strip().replace('"', '')
     else:
         city = None
     
     if ',' in (request.args.get('marker', 'Built Heritage')):
         marker_param = request.args.get('marker', 'Built Heritage')
-        marker = [m.strip().replace('"','').lower() for m in marker_param.split(',')]    
+        marker = [m.strip().replace('"','') for m in marker_param.split(',')]    
     else:
-        marker = [request.args.get('marker', 'Built Heritage').strip().replace('"','').lower()]
+        marker = [request.args.get('marker', 'Built Heritage').strip().replace('"','')]
 
     if city is None:
         try:
@@ -76,7 +76,7 @@ def historical_cities_data():
                                 if cleaned_data.split('},')[-1].lstrip(',') != '':
                                     cleaned_data_final = json.loads(cleaned_data.split('},')[-1].lstrip(','))
                                     for marker_item in marker:
-                                        if cleaned_data_final['field_pin_type'] == marker_item.lower().strip():
+                                        if cleaned_data_final['field_pin_type'] == marker_item:
                                             city_object['nid'] = cleaned_data_final['nid']
                                             city_object['title'] = cleaned_data_final['title']
                                             city_object['field_marker_introduction_image'] = cleaned_data_final['field_marker_introduction_image']
@@ -102,7 +102,7 @@ def historical_cities_data():
                                 data = json.loads(data)
                 
                                 for marker_item in marker:
-                                    if data['field_pin_type'] == marker_item.lower().strip():
+                                    if data['field_pin_type'] == marker_item:
                                         city_object['nid'] = data['nid']
                                         city_object['title'] = data['title']
                                         city_object['field_marker_introduction_image'] = data['field_marker_introduction_image']
@@ -133,7 +133,7 @@ def historical_cities_data():
                                 data_json = (json.loads(data + ']')) 
                                 data_json = data_json[0]
                                 for marker_item in marker:
-                                    if data_json['field_pin_type'] == marker_item.lower().strip():
+                                    if data_json['field_pin_type'] == marker_item:
                                         varanasi_city_obj = {}
                                         varanasi_city_obj['nid'] = data_json['nid']
                                         varanasi_city_obj['title'] = data_json['title']
